@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <h2>SDN List Monitor</h2>
+    @if (ViewBag.HtmlContent == "up to date")
+    {
+        <div id="notice_no_change"><h4>SDN List is @ViewBag.HtmlContent </h4> <div id="update"><a class="btn btn-default" href="/Home/Index" onclick="clickAndDisableUpdate();">Check for updates</a></div></div>
+    }
+    else
+    {
+        <div id="notice_change">@Html.Raw(ViewBag.HtmlContent) <div id="patch"><a class="btn btn-default" href="/Home/Patch" onclick="clickAndDisablePatch();">Patch File</a></div></div>
+    }
+</div>
+<script>
+
+   function clickAndDisablePatch() {
+     // disable subsequent clicks
+           $("#patch").html("<p>Patching file, please wait...</p>");
+    }
+    function clickAndDisableUpdate() {
+        // disable subsequent clicks
+        $("#notice_no_change").html("<p>Checkin for updates, please wait...</p>");
+    }
+</script>
